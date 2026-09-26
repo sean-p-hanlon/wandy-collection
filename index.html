@@ -98,7 +98,7 @@ body {
     z-index: 3;
 }
 
-/* CARDS FARTHER AWAY */
+/* HIDDEN CARDS */
 
 .card.hidden {
     left: 50%;
@@ -107,20 +107,27 @@ body {
     z-index: 1;
 }
 
+/* CARD INFORMATION */
+
 .info {
     text-align: center;
     margin-top: 10px;
+    padding: 0 15px;
 }
 
 .info h2 {
     margin: 0;
     font-size: 22px;
+    color: #000;
 }
 
 .info p {
-    color: #aaa;
+    color: #000;
     margin: 8px 0;
+    font-size: 17px;
 }
+
+/* CONTROLS */
 
 .controls {
     display: flex;
@@ -144,10 +151,12 @@ button:hover {
     background: #333;
 }
 
+/* DOTS */
+
 .dots {
     text-align: center;
     margin-top: 20px;
-    color: #777;
+    color: #000;
 }
 
 /* MOBILE */
@@ -188,7 +197,7 @@ button:hover {
 
     <h1>The WANDY Collection</h1>
 
-    <p>14 Total Parallels as of 9/25/2026</p>
+    <p id="collectionCount"></p>
 
 </div>
 
@@ -196,63 +205,7 @@ button:hover {
 <div class="carousel-container">
 
     <div class="carousel" id="carousel">
-
-       <div class="card">
-    <img src="truegreenauto.png">
-</div>
-
-         <div class="card">
-    <img src="greenlavaauto.jpeg">
-</div>
-        
-        <div class="card">
-            <img src="baseauto.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="geometric.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="purplepulsar.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="purplegeometric.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="wave.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="yellowgeometric.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="trueyellow.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="goldshimmer.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="xfractor.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="mojorefractor.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="lazer.jpeg">
-        </div>
-
-        <div class="card">
-            <img src="base.jpeg">
-        </div>
-
+        <!-- Cards are automatically created from cardData below -->
     </div>
 
 </div>
@@ -260,11 +213,9 @@ button:hover {
 
 <div class="info">
 
-    <h2 id="playerName">Card 1</h2>
+    <h2 id="playerName">Wandy Asigen</h2>
 
-    <p id="cardDescription">
-        Your sports card collection
-    </p>
+    <p id="cardDescription"></p>
 
 </div>
 
@@ -283,18 +234,176 @@ button:hover {
 
 <script>
 
+/*
+==========================================================
+CARD DATA
+==========================================================
+
+THIS IS THE MAIN SECTION YOU WILL EDIT AS YOUR COLLECTION
+GROWS.
+
+To add a new card, copy one of the entries and change:
+
+image
+parallel
+
+Example:
+
+{
+    image: "newcard.jpeg",
+    parallel: "Blue Auto #/150"
+},
+
+Make sure the image file is in the SAME folder as index.html.
+==========================================================
+*/
+
+const cardData = [
+
+    {
+        image: "truegreenauto.png",
+        parallel: "True Green Auto #/99"
+    },
+
+    {
+        image: "greenlavaauto.jpeg",
+        parallel: "Green Lava Auto #/99"
+    },
+
+    {
+        image: "baseauto.jpeg",
+        parallel: "Base Auto"
+    },
+
+    {
+        image: "geometric.jpeg",
+        parallel: "Geometric #/499"
+    },
+
+    {
+        image: "purplepulsar.jpeg",
+        parallel: "Purple Pulsar #/250"
+    },
+
+    {
+        image: "purplegeometric.jpeg",
+        parallel: "Purple Geometric #/250"
+    },
+
+    {
+        image: "wave.jpeg",
+        parallel: "Wave Refractor #/100"
+    },
+
+    {
+        image: "yellowgeometric.jpeg",
+        parallel: "Yellow Geometric #/75"
+    },
+
+    {
+        image: "trueyellow.jpeg",
+        parallel: "True Yellow #/75"
+    },
+
+    {
+        image: "goldshimmer.jpeg",
+        parallel: "Gold Shimmer #/50"
+    },
+
+    {
+        image: "xfractor.jpeg",
+        parallel: "X-Fractor"
+    },
+
+    {
+        image: "mojorefractor.jpeg",
+        parallel: "Mojo Refractor"
+    },
+
+    {
+        image: "lazer.jpeg",
+        parallel: "Lazer"
+    },
+
+    {
+        image: "base.jpeg",
+        parallel: "Base"
+    }
+
+];
+
+
+/*
+==========================================================
+AUTOMATICALLY CREATE THE CARDS
+==========================================================
+*/
+
+const carousel = document.getElementById("carousel");
+
+cardData.forEach((cardInfo) => {
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    const image = document.createElement("img");
+
+    image.src = cardInfo.image;
+
+    image.alt =
+        "Wandy Asigen - " +
+        cardInfo.parallel;
+
+    card.appendChild(image);
+
+    carousel.appendChild(card);
+
+});
+
+
+/*
+==========================================================
+GET CARDS
+==========================================================
+*/
+
 const cards = document.querySelectorAll(".card");
 
-const previousButton = document.getElementById("previous");
-const nextButton = document.getElementById("next");
+const previousButton =
+    document.getElementById("previous");
 
-const playerName = document.getElementById("playerName");
-const cardDescription = document.getElementById("cardDescription");
+const nextButton =
+    document.getElementById("next");
+
+const playerName =
+    document.getElementById("playerName");
+
+const cardDescription =
+    document.getElementById("cardDescription");
+
+const collectionCount =
+    document.getElementById("collectionCount");
 
 let currentIndex = 0;
 
 
-/* UPDATE CAROUSEL */
+/*
+==========================================================
+COLLECTION COUNT
+==========================================================
+*/
+
+collectionCount.textContent =
+    cardData.length +
+    " Total Parallels as of 9/25/2026";
+
+
+/*
+==========================================================
+UPDATE CAROUSEL
+==========================================================
+*/
 
 function updateCarousel() {
 
@@ -302,35 +411,67 @@ function updateCarousel() {
 
         card.className = "card";
 
-        let difference = index - currentIndex;
+        let difference =
+            index - currentIndex;
+
 
         /*
-        If we move beyond the last card,
-        wrap back to the beginning.
+        Wrap around when moving
+        from the first/last card.
         */
 
         if (difference > cards.length / 2) {
+
             difference -= cards.length;
+
         }
+
 
         if (difference < -cards.length / 2) {
+
             difference += cards.length;
+
         }
 
+
+        /*
+        CENTER CARD
+        */
 
         if (difference === 0) {
 
             card.classList.add("center");
 
-        } else if (difference === -1) {
+        }
+
+
+        /*
+        CARD TO THE LEFT
+        */
+
+        else if (difference === -1) {
 
             card.classList.add("left");
 
-        } else if (difference === 1) {
+        }
+
+
+        /*
+        CARD TO THE RIGHT
+        */
+
+        else if (difference === 1) {
 
             card.classList.add("right");
 
-        } else {
+        }
+
+
+        /*
+        ALL OTHER CARDS
+        */
+
+        else {
 
             card.classList.add("hidden");
 
@@ -339,29 +480,41 @@ function updateCarousel() {
     });
 
 
+    /*
+    UPDATE CARD INFORMATION
+    */
+
     playerName.textContent =
-        "Card " + (currentIndex + 1);
+        "Wandy Asigen";
+
 
     cardDescription.textContent =
-        "Sports card " +
-        (currentIndex + 1) +
-        " of " +
-        cards.length;
+        cardData[currentIndex].parallel;
 
+
+    /*
+    UPDATE DOTS
+    */
 
     updateDots();
 
 }
 
 
-/* NEXT CARD */
+/*
+==========================================================
+NEXT CARD
+==========================================================
+*/
 
 function nextCard() {
 
     currentIndex++;
 
     if (currentIndex >= cards.length) {
+
         currentIndex = 0;
+
     }
 
     updateCarousel();
@@ -369,14 +522,20 @@ function nextCard() {
 }
 
 
-/* PREVIOUS CARD */
+/*
+==========================================================
+PREVIOUS CARD
+==========================================================
+*/
 
 function previousCard() {
 
     currentIndex--;
 
     if (currentIndex < 0) {
+
         currentIndex = cards.length - 1;
+
     }
 
     updateCarousel();
@@ -384,66 +543,110 @@ function previousCard() {
 }
 
 
-/* BUTTONS */
+/*
+==========================================================
+BUTTONS
+==========================================================
+*/
 
-nextButton.addEventListener("click", nextCard);
+nextButton.addEventListener(
+    "click",
+    nextCard
+);
 
-previousButton.addEventListener("click", previousCard);
+previousButton.addEventListener(
+    "click",
+    previousCard
+);
 
 
-/* SWIPING */
+/*
+==========================================================
+SWIPING
+==========================================================
+*/
 
 let startX = 0;
+
 let endX = 0;
 
 
-document.getElementById("carousel")
-.addEventListener("touchstart", function(event) {
+carousel.addEventListener(
+    "touchstart",
+    function(event) {
 
-    startX = event.touches[0].clientX;
-
-});
-
-
-document.getElementById("carousel")
-.addEventListener("touchend", function(event) {
-
-    endX = event.changedTouches[0].clientX;
-
-    let distance = startX - endX;
-
-
-    if (distance > 50) {
-
-        nextCard();
+        startX =
+            event.touches[0].clientX;
 
     }
+);
 
 
-    if (distance < -50) {
+carousel.addEventListener(
+    "touchend",
+    function(event) {
 
-        previousCard();
+        endX =
+            event.changedTouches[0].clientX;
+
+
+        let distance =
+            startX - endX;
+
+
+        /*
+        SWIPE LEFT
+        */
+
+        if (distance > 50) {
+
+            nextCard();
+
+        }
+
+
+        /*
+        SWIPE RIGHT
+        */
+
+        if (distance < -50) {
+
+            previousCard();
+
+        }
 
     }
+);
 
-});
 
-
-/* DOTS */
+/*
+==========================================================
+DOTS
+==========================================================
+*/
 
 function updateDots() {
 
-    const dots = document.getElementById("dots");
+    const dots =
+        document.getElementById("dots");
+
 
     dots.textContent = "";
 
-    for (let i = 0; i < cards.length; i++) {
+
+    for (
+        let i = 0;
+        i < cards.length;
+        i++
+    ) {
 
         if (i === currentIndex) {
 
             dots.textContent += "● ";
 
-        } else {
+        }
+
+        else {
 
             dots.textContent += "○ ";
 
@@ -454,7 +657,11 @@ function updateDots() {
 }
 
 
-/* START */
+/*
+==========================================================
+START
+==========================================================
+*/
 
 updateCarousel();
 
