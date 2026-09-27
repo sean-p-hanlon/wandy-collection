@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -18,7 +19,6 @@
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&display=swap"
     rel="stylesheet"
 >
-
 
 <style>
 
@@ -68,6 +68,74 @@ body::before {
     z-index: -1;
 
     pointer-events: none;
+}
+
+
+/* =========================================================
+   METS-STYLE NAVIGATION BUTTON
+========================================================= */
+
+.top-button {
+
+    text-align: center;
+
+    margin: 12px 0 8px;
+
+}
+
+.top-button a {
+
+    display: inline-block;
+
+    background: #002D72;
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+
+    font-family: "Barlow Condensed", Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    padding: 8px 22px;
+
+    border-radius: 25px;
+
+    border: 2px solid #FFFFFF;
+
+    box-shadow:
+        3px 3px 0 #FF5910,
+        5px 5px 0 rgba(0,0,0,0.25);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+
+}
+
+.top-button a:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        4px 4px 0 #FF5910,
+        6px 6px 0 rgba(0,0,0,0.25);
+
+}
+
+.top-button a:active {
+
+    transform: translateY(2px);
+
+    box-shadow:
+        1px 1px 0 #FF5910;
+
 }
 
 
@@ -473,100 +541,105 @@ button:hover {
 
 </head>
 
-
 <body>
 
 <!-- =======================================================
      LINK TO ABOUT PAGE
 ======================================================== -->
-    
+
+<div class="top-button">
+
+
+<a href="about/about.html">
+    Autographs I Need
+</a>
+
+
+</div>
+
 <!-- =======================================================
      HEADER
 ======================================================== -->
 
 <div class="header">
 
-    <h1>The WANDY Collection</h1>
 
-    <p id="collectionCount"></p>
+<h1>The WANDY Collection</h1>
+
+<p id="collectionCount"></p>
+
 
 </div>
 
-
-<!-- =======================================================
+<!-- =========================================================
      CAROUSEL
-======================================================== -->
+========================================================= -->
 
 <div class="carousel-container">
 
-    <div
-        class="carousel"
-        id="carousel"
-    >
+<div
+    class="carousel"
+    id="carousel"
+>
 
-        <!-- Cards are automatically created below -->
-
-    </div>
+    <!-- Cards are automatically created below -->
 
 </div>
 
+</div>
 
-<!-- =======================================================
+<!-- =========================================================
      WANDY BATTING IMAGE
-======================================================== -->
+========================================================= -->
 
 <div class="wandy-batting">
 
-    <img
-        id="wandyBattingImage"
-        src="wandybatting.png"
-        alt="Wandy Asigen batting"
-    >
+<img
+    id="wandyBattingImage"
+    src="wandybatting.png"
+    alt="Wandy Asigen batting"
+>
 
 </div>
 
-
-<!-- =======================================================
+<!-- =========================================================
      CARD INFORMATION
-======================================================== -->
+========================================================= -->
 
 <div class="info">
 
-    <h2 id="playerName">
-        Wandy Asigen
-    </h2>
+<h2 id="playerName">
+    Wandy Asigen
+</h2>
 
-    <p id="cardDescription"></p>
+<p id="cardDescription"></p>
 
 </div>
 
-
-<!-- =======================================================
+<!-- =========================================================
      NAVIGATION BUTTONS
-======================================================== -->
+========================================================= -->
 
 <div class="controls">
 
-    <button id="previous">
-        ‹
-    </button>
+<button id="previous">
+    ‹
+</button>
 
-    <button id="next">
-        ›
-    </button>
+<button id="next">
+    ›
+</button>
 
 </div>
 
-
-<!-- =======================================================
+<!-- =========================================================
      DOTS
-======================================================== -->
+========================================================= -->
 
 <div
     class="dots"
     id="dots"
 ></div>
-
 
 <script>
 
@@ -720,7 +793,6 @@ const wandyBattingImages = [
     "wandybatting4.png"
 
 ];
-
 
 
 /* =========================================================
@@ -907,16 +979,6 @@ function updateCarousel() {
 
     /* =====================================================
        UPDATE WANDY BATTING IMAGE
-    =====================================================
-
-       currentIndex:
-       0 = image 1
-       1 = image 2
-       2 = image 3
-       3 = image 4
-       4 = image 1
-       etc.
-
     ===================================================== */
 
     const battingImageIndex =
@@ -1106,7 +1168,6 @@ updateCarousel();
 
 
 </script>
-
 
 </body>
 
