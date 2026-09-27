@@ -104,7 +104,7 @@ body::before {
 
     color: #FF5910;
 
-    /* Orange outline */
+    /* White outline */
 
     -webkit-text-stroke: 2px #FFFFFF;
 
@@ -291,6 +291,8 @@ body::before {
     height: 90px;
 
     display: inline-block;
+
+    transition: opacity 0.2s ease;
 
 }
 
@@ -513,6 +515,7 @@ button:hover {
 <div class="wandy-batting">
 
     <img
+        id="wandyBattingImage"
         src="wandybatting.png"
         alt="Wandy Asigen batting"
     >
@@ -579,11 +582,12 @@ button:hover {
 ========================================================= */
 
 const cardData = [
-{
+
+    {
         image: "goldminidiamondauto.jpeg",
         parallel: "Gold Mini-Diamond Auto # to 50"
     },
-    
+
     {
         image: "truegreenauto.png",
         parallel: "True Green Auto # to 99"
@@ -598,8 +602,8 @@ const cardData = [
         image: "bluereptilianauto.jpeg",
         parallel: "Blue Reptilian Auto # to 150"
     },
-    
-     {
+
+    {
         image: "trueblueauto.jpeg",
         parallel: "Blue Auto # to 150"
     },
@@ -629,7 +633,7 @@ const cardData = [
         parallel: "Purple Geometric Refractor # to 250"
     },
 
-{
+    {
         image: "truepurplerefractor.jpeg",
         parallel: "True Purple Refractor # to 250"
     },
@@ -685,6 +689,30 @@ const cardData = [
     }
 
 ];
+
+
+/* =========================================================
+   WANDY BATTING IMAGES
+=========================================================
+
+   These change every time the carousel moves.
+
+   1 → 2 → 3 → 4 → 1 → 2 → 3 → 4...
+
+========================================================= */
+
+const wandyBattingImages = [
+
+    "wandybatting.png",
+
+    "wandybatting2.png",
+
+    "wandybatting3.png",
+
+    "wandybatting4.png"
+
+];
+
 
 
 /* =========================================================
@@ -753,6 +781,10 @@ const collectionCount =
     document.getElementById("collectionCount");
 
 
+const wandyBattingImage =
+    document.getElementById("wandyBattingImage");
+
+
 let currentIndex = 0;
 
 
@@ -760,10 +792,9 @@ let currentIndex = 0;
    COLLECTION COUNT
 ========================================================= */
 
-collectionCount.textContent = 
+collectionCount.textContent =
     "Parallel Counter: " +
-    cardData.length 
-    ;
+    cardData.length;
 
 
 /* =========================================================
@@ -854,7 +885,9 @@ function updateCarousel() {
     });
 
 
-    /* Update card information */
+    /* =====================================================
+       UPDATE CARD INFORMATION
+    ===================================================== */
 
     playerName.textContent =
         "Wandy Asigen";
@@ -862,6 +895,34 @@ function updateCarousel() {
 
     cardDescription.textContent =
         cardData[currentIndex].parallel;
+
+
+    /* =====================================================
+       UPDATE WANDY BATTING IMAGE
+    =====================================================
+
+       currentIndex:
+       0 = image 1
+       1 = image 2
+       2 = image 3
+       3 = image 4
+       4 = image 1
+       etc.
+
+    ===================================================== */
+
+    const battingImageIndex =
+        currentIndex %
+        wandyBattingImages.length;
+
+
+    wandyBattingImage.src =
+        wandyBattingImages[battingImageIndex];
+
+
+    wandyBattingImage.alt =
+        "Wandy Asigen batting - image " +
+        (battingImageIndex + 1);
 
 
     /* Update dots */
