@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WANDY Card Vault</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   BASIC PAGE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #89CFF0;
+    color: #000;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("new-york-mets-logo-transparent.png");
+    background-repeat: repeat;
+    background-size: 150px 150px;
+    background-position: center;
+    opacity: 0.12;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================================================
+   TOP NAVIGATION
+========================================================= */
+
+.top-button {
+    text-align: center;
+    margin: 12px 0 8px;
+}
+
+.top-button a {
+    display: inline-block;
+    background: #002D72;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 22px;
+    border-radius: 25px;
+    border: 2px solid #FFFFFF;
+    box-shadow:
+        3px 3px 0 #FF5910,
+        5px 5px 0 rgba(0,0,0,0.25);
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.top-button a:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        4px 4px 0 #FF5910,
+        6px 6px 0 rgba(0,0,0,0.25);
+}
+
+.top-button a:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 0 #FF5910;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    text-align: center;
+    padding: 12px 15px 10px;
+}
+
+.header h1 {
+    margin: 0;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FF5910;
+    -webkit-text-stroke: 2px #FFFFFF;
+    text-shadow:
+        3px 3px 0 #002D72,
+        5px 5px 0 rgba(0,0,0,0.25);
+}
+
+.header p {
+    margin: 6px 0 0;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-container {
+    width: min(900px, calc(100% - 28px));
+    margin: 10px auto 14px;
+    position: relative;
+}
+
+#searchInput {
+    width: 100%;
+    height: 54px;
+    border: 3px solid #FFFFFF;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.96);
+    color: #111;
+    padding: 0 52px 0 20px;
+    font-size: 19px;
+    outline: none;
+    box-shadow:
+        3px 3px 0 #002D72,
+        5px 5px 0 rgba(0,0,0,0.2);
+}
+
+#searchInput:focus {
+    box-shadow:
+        3px 3px 0 #FF5910,
+        5px 5px 0 rgba(0,0,0,0.2);
+}
+
+.search-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    pointer-events: none;
+}
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    width: min(1000px, calc(100% - 20px));
+    margin: 0 auto 15px;
+}
+
+.filter-button {
+    border: 2px solid #FFFFFF;
+    background: #002D72;
+    color: #FFFFFF;
+    border-radius: 22px;
+    padding: 7px 15px;
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+.filter-button:hover {
+    background: #FF5910;
+}
+
+.filter-button.active {
+    background: #FF5910;
+    box-shadow: 2px 2px 0 #002D72;
+}
+
+/* =========================================================
+   CARD GRID
+========================================================= */
+
+.vault-grid {
+    width: min(1100px, calc(100% - 24px));
+    margin: 0 auto 30px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 14px;
+}
+
+/* =========================================================
+   VAULT CARD
+========================================================= */
+
+.vault-card {
+    background: rgba(255,255,255,0.92);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 8px 22px rgba(0,0,0,0.28);
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.vault-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 28px rgba(0,0,0,0.35);
+}
+
+.vault-image-wrap {
+    width: 100%;
+    aspect-ratio: 0.70;
+    background: #222;
+    overflow: hidden;
+}
+
+.vault-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.vault-info {
+    padding: 10px 11px 13px;
+}
+
+.vault-name {
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: #002D72;
+    margin-bottom: 5px;
+}
+
+.vault-parallel {
+    font-size: 15px;
+    line-height: 1.2;
+    color: #111;
+    font-weight: 700;
+}
+
+.vault-category {
+    display: inline-block;
+    margin-top: 7px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: #002D72;
+    color: #FFFFFF;
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 45px 20px;
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: #002D72;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: min(500px, 94vw);
+    max-height: 94vh;
+    overflow: auto;
+    background: #89CFF0;
+    border-radius: 20px;
+    padding: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.modal-image {
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+    background: #222;
+}
+
+.modal-title {
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    color: #002D72;
+    margin: 12px 5px 3px;
+}
+
+.modal-description {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 5px 10px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    background: #002D72;
+    color: #FFFFFF;
+    font-size: 25px;
+    line-height: 1;
+    z-index: 2;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 40px;
+        letter-spacing: 1px;
+        -webkit-text-stroke: 1.5px #FFFFFF;
+        text-shadow:
+            2px 2px 0 #002D72,
+            3px 3px 0 rgba(0,0,0,0.25);
+    }
+
+    .header p {
+        font-size: 15px;
+    }
+
+    .vault-grid {
+        gap: 14px 10px;
+    }
+
+    .vault-info {
+        padding: 8px 9px 11px;
+    }
+
+    .vault-name {
+        font-size: 19px;
+    }
+
+    .vault-parallel {
+        font-size: 14px;
+    }
+
+    .filter-button {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    body::before {
+        background-size: 120px 120px;
+        opacity: 0.10;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .vault-grid {
+        width: calc(100% - 14px);
+        gap: 12px 7px;
+    }
+
+    .vault-name {
+        font-size: 17px;
+    }
+
+    .vault-parallel {
+        font-size: 13px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =======================================================
+     BACK TO COLLECTION
+======================================================== -->
+
+<div class="top-button">
+
+    <a href="index.html">
+        ← WANDY Collection
+    </a>
+
+</div>
+
+<!-- =======================================================
+     HEADER
+======================================================== -->
+
+<div class="header">
+
+    <h1>WANDY Card Vault</h1>
+
+    <p id="resultCount"></p>
+
+</div>
+
+<!-- =======================================================
+     SEARCH
+======================================================== -->
+
+<div class="search-container">
+
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="Search Wandy cards..."
+        autocomplete="off"
+    >
+
+    <span class="search-icon">⌕</span>
+
+</div>
+
+<!-- =======================================================
+     FILTERS
+======================================================== -->
+
+<div class="filters">
+
+    <button class="filter-button active" data-filter="all">
+        ALL
+    </button>
+
+    <button class="filter-button" data-filter="auto">
+        AUTOS
+    </button>
+
+    <button class="filter-button" data-filter="refractor">
+        REFRACTORS
+    </button>
+
+    <button class="filter-button" data-filter="numbered">
+        NUMBERED
+    </button>
+
+    <button class="filter-button" data-filter="base">
+        BASE
+    </button>
+
+</div>
+
+<!-- =======================================================
+     CARD GRID
+======================================================== -->
+
+<div
+    class="vault-grid"
+    id="vaultGrid"
+></div>
+
+<div
+    class="no-results"
+    id="noResults"
+>
+    No Wandy cards found.
+</div>
+
+<!-- =======================================================
+     CARD DETAIL MODAL
+======================================================== -->
+
+<div
+    class="modal"
+    id="cardModal"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="close-modal"
+            id="closeModal"
+        >
+            ×
+        </button>
+
+        <img
+            class="modal-image"
+            id="modalImage"
+            src=""
+            alt=""
+        >
+
+        <div
+            class="modal-title"
+            id="modalTitle"
+        ></div>
+
+        <div
+            class="modal-description"
+            id="modalDescription"
+        ></div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   CARD DATA
+=========================================================
+
+   This matches the card data from index.html.
+
+   To add a card later:
+   1. Upload its image to the same folder.
+   2. Add one object below.
+   3. The search and filters automatically update.
+
+========================================================= */
+
+const cardData = [
+
+    {
+        image: "goldminidiamondauto.jpeg",
+        parallel: "Gold Mini-Diamond Auto # to 50"
+    },
+
+    {
+        image: "truegreenauto.png",
+        parallel: "True Green Auto # to 99"
+    },
+
+    {
+        image: "greenlavaauto.jpeg",
+        parallel: "Green Lava Auto # to 99"
+    },
+
+    {
+        image: "bluereptilianauto.jpeg",
+        parallel: "Blue Reptilian Auto # to 150"
+    },
+
+    {
+        image: "trueblueauto.jpeg",
+        parallel: "Blue Auto # to 150"
+    },
+
+    {
+        image: "refractorauto.jpeg",
+        parallel: "Refractor Auto # to 499"
+    },
+
+    {
+        image: "baseauto.jpeg",
+        parallel: "Base Auto"
+    },
+
+    {
+        image: "geometric.jpeg",
+        parallel: "Geometric Refractor # to 499"
+    },
+
+    {
+        image: "specklerefractor.jpeg",
+        parallel: "Speckle Refractor # to 299"
+    },
+
+    {
+        image: "purplepulsar.jpeg",
+        parallel: "Purple Pulsar Refractor # to 250"
+    },
+
+    {
+        image: "purpleshimmer.jpeg",
+        parallel: "Purple Shimmer Refractor # to 250"
+    },
+
+    {
+        image: "purplewave.jpeg",
+        parallel: "Purple Wave Refractor # to 250"
+    },
+
+    {
+        image: "purplegeometric.jpeg",
+        parallel: "Purple Geometric Refractor # to 250"
+    },
+
+    {
+        image: "truepurplerefractor.jpeg",
+        parallel: "True Purple Refractor # to 250"
+    },
+
+    {
+        image: "fuschiashimmer.jpeg",
+        parallel: "Fuschia Shimmer Refractor # to 199"
+    },
+
+    {
+        image: "truebluerefractor.jpeg",
+        parallel: "True Blue Refractor # to 150"
+    },
+
+    {
+        image: "bluegeometric.jpeg",
+        parallel: "Blue Geometric Refractor # to 150"
+    },
+
+    {
+        image: "aquapulsarrefractor.jpeg",
+        parallel: "Aqua Pulsar Refractor # to 125"
+    },
+
+    {
+        image: "wave.jpeg",
+        parallel: "Wave Refractor # to 100"
+    },
+
+    {
+        image: "greenreptilian.jpeg",
+        parallel: "Green Reptilian Refractor # to 99"
+    },
+
+    {
+        image: "yellowgeometric.jpeg",
+        parallel: "Yellow Geometric Refractor # to 75"
+    },
+
+    {
+        image: "trueyellow.jpeg",
+        parallel: "True Yellow Refractor # to 75"
+    },
+
+    {
+        image: "goldshimmer.jpeg",
+        parallel: "Gold Shimmer Refractor # to 50"
+    },
+
+    {
+        image: "orangereptilian.jpeg",
+        parallel: "Orange Reptilian Refractor # to 25"
+    },
+
+    {
+        image: "xfractor.jpeg",
+        parallel: "X-Fractor"
+    },
+
+    {
+        image: "mojorefractor.jpeg",
+        parallel: "Mojo Refractor"
+    },
+
+    {
+        image: "lazer.jpeg",
+        parallel: "Lazer Refractor"
+    },
+
+    {
+        image: "base.jpeg",
+        parallel: "Base Card"
+    }
+
+];
+
+/* =========================================================
+   GET ELEMENTS
+========================================================= */
+
+const vaultGrid =
+    document.getElementById("vaultGrid");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const resultCount =
+    document.getElementById("resultCount");
+
+const noResults =
+    document.getElementById("noResults");
+
+const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+const cardModal =
+    document.getElementById("cardModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const modalImage =
+    document.getElementById("modalImage");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const modalDescription =
+    document.getElementById("modalDescription");
+
+let activeFilter = "all";
+
+/* =========================================================
+   DETERMINE CARD CATEGORY
+========================================================= */
+
+function getCategory(card) {
+
+    const text =
+        card.parallel.toLowerCase();
+
+    if (text.includes("auto")) {
+        return "auto";
+    }
+
+    if (text.includes("base")) {
+        return "base";
+    }
+
+    if (text.includes("refractor")) {
+        return "refractor";
+    }
+
+    return "other";
+}
+
+/* =========================================================
+   DETERMINE IF NUMBERED
+========================================================= */
+
+function isNumbered(card) {
+
+    return /#\s*to\s*\d+/i.test(
+        card.parallel
+    );
+
+}
+
+/* =========================================================
+   FILTER CARDS
+========================================================= */
+
+function matchesFilter(card) {
+
+    if (activeFilter === "all") {
+        return true;
+    }
+
+    if (activeFilter === "numbered") {
+        return isNumbered(card);
+    }
+
+    return getCategory(card) === activeFilter;
+}
+
+/* =========================================================
+   SEARCH CARDS
+========================================================= */
+
+function matchesSearch(card) {
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+    if (!search) {
+        return true;
+    }
+
+    const searchableText =
+        (
+            "Wandy Asigen " +
+            card.parallel +
+            " " +
+            getCategory(card)
+        ).toLowerCase();
+
+    return searchableText.includes(search);
+}
+
+/* =========================================================
+   DISPLAY CARDS
+========================================================= */
+
+function renderCards() {
+
+    vaultGrid.innerHTML = "";
+
+    const filteredCards =
+        cardData.filter(card => {
+
+            return (
+                matchesFilter(card) &&
+                matchesSearch(card)
+            );
+
+        });
+
+    resultCount.textContent =
+        filteredCards.length +
+        (
+            filteredCards.length === 1
+                ? " Card"
+                : " Cards"
+        ) +
+        " • " +
+        cardData.length +
+        " Total";
+
+    if (filteredCards.length === 0) {
+
+        noResults.style.display =
+            "block";
+
+        return;
+
+    }
+
+    noResults.style.display =
+        "none";
+
+    filteredCards.forEach(card => {
+
+        const cardElement =
+            document.createElement("div");
+
+        cardElement.className =
+            "vault-card";
+
+        const imageWrap =
+            document.createElement("div");
+
+        imageWrap.className =
+            "vault-image-wrap";
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            card.image;
+
+        image.alt =
+            "Wandy Asigen " +
+            card.parallel;
+
+        image.loading =
+            "lazy";
+
+        imageWrap.appendChild(image);
+
+        const info =
+            document.createElement("div");
+
+        info.className =
+            "vault-info";
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "vault-name";
+
+        name.textContent =
+            "Wandy Asigen";
+
+        const parallel =
+            document.createElement("div");
+
+        parallel.className =
+            "vault-parallel";
+
+        parallel.textContent =
+            card.parallel;
+
+        const category =
+            document.createElement("span");
+
+        category.className =
+            "vault-category";
+
+        if (isNumbered(card)) {
+            category.textContent =
+                "NUMBERED";
+        }
+        else {
+            category.textContent =
+                getCategory(card).toUpperCase();
+        }
+
+        info.appendChild(name);
+        info.appendChild(parallel);
+        info.appendChild(category);
+
+        cardElement.appendChild(imageWrap);
+        cardElement.appendChild(info);
+
+        cardElement.addEventListener(
+            "click",
+            () => openModal(card)
+        );
+
+        vaultGrid.appendChild(cardElement);
+
+    });
+
+}
+
+/* =========================================================
+   SEARCH EVENT
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    renderCards
+);
+
+/* =========================================================
+   FILTER EVENTS
+========================================================= */
+
+filterButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            activeFilter =
+                button.dataset.filter;
+
+            filterButtons.forEach(
+                otherButton => {
+
+                    otherButton.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+            button.classList.add(
+                "active"
+            );
+
+            renderCards();
+
+        }
+    );
+
+});
+
+/* =========================================================
+   OPEN CARD
+========================================================= */
+
+function openModal(card) {
+
+    modalImage.src =
+        card.image;
+
+    modalImage.alt =
+        "Wandy Asigen " +
+        card.parallel;
+
+    modalTitle.textContent =
+        "Wandy Asigen";
+
+    modalDescription.textContent =
+        card.parallel;
+
+    cardModal.classList.add(
+        "show"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+/* =========================================================
+   CLOSE CARD
+========================================================= */
+
+function closeCardModal() {
+
+    cardModal.classList.remove(
+        "show"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+closeModal.addEventListener(
+    "click",
+    closeCardModal
+);
+
+cardModal.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === cardModal
+        ) {
+
+            closeCardModal();
+
+        }
+
+    }
+);
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeCardModal();
+
+        }
+
+    }
+);
+
+/* =========================================================
+   START
+========================================================= */
+
+renderCards();
+
+</script>
+
+</body>
+</html>
