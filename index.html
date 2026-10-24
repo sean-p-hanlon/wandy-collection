@@ -266,17 +266,7 @@ button:hover {
     background: #333;
 }
 
-/* =========================================================
-   DOTS
-========================================================= */
-
-.dots {
-    text-align: center;
-    margin-top: 20px;
-    color: #000;
-}
-
-/* =========================================================
+/* 
    MOBILE
 ========================================================= */
 
@@ -430,16 +420,7 @@ button:hover {
 
 </div>
 
-<!-- =========================================================
-     DOTS
-========================================================= -->
-
-<div
-    class="dots"
-    id="dots"
-></div>
-
-<script>
+<!-- 
 
 /* =========================================================
    CARD DATA
@@ -471,6 +452,11 @@ const cardData = [
      {
         image: "greenreptilianauto.jpeg",
         parallel: "Green Reptilian Auto # to 99"
+    },
+
+    {
+        image: "bluemojoauto.jpeg",
+        parallel: "Blue Mojo Refractor Auto # to 150"
     },
     
     {
@@ -541,6 +527,11 @@ const cardData = [
     {
         image: "truepurplerefractor.jpeg",
         parallel: "True Purple Refractor # to 250"
+    },
+
+    {
+        image: "fuchsiageometric.jpeg",
+        parallel: "Fuschia Geometric Refractor # to 199"
     },
 
     {
@@ -812,7 +803,6 @@ function updateCarousel() {
         "Wandy Asigen batting - image " +
         (battingImageIndex + 1);
 
-    updateDots();
 }
 
 /* =========================================================
@@ -899,42 +889,9 @@ carousel.addEventListener(
     }
 );
 
-/* =========================================================
-   DOTS
-========================================================= */
+/* 
 
-function updateDots() {
-
-    const dots =
-        document.getElementById("dots");
-
-    dots.textContent = "";
-
-    for (
-        let i = 0;
-        i < cards.length;
-        i++
-    ) {
-
-        if (
-            i === currentIndex
-        ) {
-
-            dots.textContent += "● ";
-
-        }
-
-        else {
-
-            dots.textContent += "○ ";
-
-        }
-
-    }
-
-}
-
-/* =========================================================
+=========================================================
    START
 ========================================================= */
 
