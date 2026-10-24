@@ -267,13 +267,18 @@ button:hover {
 }
 
 /* =========================================================
-   DOTS
+   Card Counter -- replaces DOTS
 ========================================================= */
 
-.dots {
+.card-counter {
     text-align: center;
-    margin-top: 10px;
-    color: #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #002D72;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 /* =========================================================
@@ -434,11 +439,7 @@ button:hover {
      DOTS
 ========================================================= -->
 
-<div
-    class="dots"
-    id="dots"
-></div>
-
+<div class="card-counter" id="cardCounter"></div>
 <script>
 
 /* =========================================================
@@ -823,7 +824,7 @@ function updateCarousel() {
         "Wandy Asigen batting - image " +
         (battingImageIndex + 1);
 
-    updateDots();
+    updateCardCounter();
 }
 
 /* =========================================================
@@ -914,35 +915,12 @@ carousel.addEventListener(
    DOTS
 ========================================================= */
 
-function updateDots() {
+function updateCardCounter() {
+    const counter = document.getElementById("cardCounter");
 
-    const dots =
-        document.getElementById("dots");
-
-    dots.textContent = "";
-
-    for (
-        let i = 0;
-        i < cards.length;
-        i++
-    ) {
-
-        if (
-            i === currentIndex
-        ) {
-
-            dots.textContent += "● ";
-
-        }
-
-        else {
-
-            dots.textContent += "○ ";
-
-        }
-
-    }
-
+    counter.textContent =
+        "CARD " + (currentIndex + 1) +
+        " OF " + cardData.length;
 }
 
 /* =========================================================
