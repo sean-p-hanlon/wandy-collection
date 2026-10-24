@@ -266,7 +266,17 @@ button:hover {
     background: #333;
 }
 
-/* 
+/* =========================================================
+   DOTS
+========================================================= */
+
+.dots {
+    text-align: center;
+    margin-top: 10px;
+    color: #000;
+}
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -420,7 +430,16 @@ button:hover {
 
 </div>
 
-<!-- 
+<!-- =========================================================
+     DOTS
+========================================================= -->
+
+<div
+    class="dots"
+    id="dots"
+></div>
+
+<script>
 
 /* =========================================================
    CARD DATA
@@ -454,10 +473,11 @@ const cardData = [
         parallel: "Green Reptilian Auto # to 99"
     },
 
-    {
+     {
         image: "bluemojoauto.jpeg",
         parallel: "Blue Mojo Refractor Auto # to 150"
     },
+    
     
     {
         image: "bluereptilianauto.jpeg",
@@ -803,6 +823,7 @@ function updateCarousel() {
         "Wandy Asigen batting - image " +
         (battingImageIndex + 1);
 
+    updateDots();
 }
 
 /* =========================================================
@@ -889,9 +910,42 @@ carousel.addEventListener(
     }
 );
 
-/* 
+/* =========================================================
+   DOTS
+========================================================= */
 
-=========================================================
+function updateDots() {
+
+    const dots =
+        document.getElementById("dots");
+
+    dots.textContent = "";
+
+    for (
+        let i = 0;
+        i < cards.length;
+        i++
+    ) {
+
+        if (
+            i === currentIndex
+        ) {
+
+            dots.textContent += "● ";
+
+        }
+
+        else {
+
+            dots.textContent += "○ ";
+
+        }
+
+    }
+
+}
+
+/* =========================================================
    START
 ========================================================= */
 
